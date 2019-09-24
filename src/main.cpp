@@ -89,14 +89,13 @@ void setup()
     strip.SetPixelColor(3, white);
     strip.Show();
 
-   disableCore0WDT(); //I disable the core becasue i dont have the WDT reset functions working yet
-   xTaskCreatePinnedToCore(motorCall, "motorTask", 1000, NULL, 1, &motorTask, 0);
+    disableCore0WDT(); //I disable the core becasue i dont have the WDT reset functions working yet
+    xTaskCreatePinnedToCore(motorCall, "motorTask", 1000, NULL, 1, &motorTask, 0);
 }
 
 
 void loop()
 {
-    
     Serial.print("Requesting temperature");
     sensors.requestTemperatures();
     Serial.println("DONE");
@@ -104,4 +103,5 @@ void loop()
     Serial.print(" *C Sensor ");
     Serial.println(sensors.getTempC(sensor1));
 
+    delay(100);
 }
